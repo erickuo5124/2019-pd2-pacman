@@ -26,10 +26,16 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    movableitem.cpp \
+    circlepathitem.cpp \
+    squarepathitem.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    movableitem.h \
+    circlepathitem.h \
+    squarepathitem.h
 
 FORMS += \
         mainwindow.ui
