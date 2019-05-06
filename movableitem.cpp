@@ -9,8 +9,10 @@ MovableItem::MovableItem(qreal x, qreal y, qreal d, QGraphicsItem *parent) :
 
 void MovableItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::SolidPattern);
+    // Reference: https://doc.qt.io/archives/qt-4.8/qgraphicsitem.html#paint
+
     painter->setPen(Qt::gray);
+    painter->setBrush(Qt::SolidPattern);
     painter->setBrush(Qt::gray);
     painter->drawEllipse(rect());
 }

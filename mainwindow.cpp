@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     itemList = { new CirclePathItem({200, 300}, 100), new SquarePathItem({600, 300}, 100) };
 
+    // Keyword: range-based for-loop
     for (const auto &i : itemList) {
         // Use function pointer of parent class to connect signal & slot.
         connect(timer, &QTimer::timeout, i, &MovableItem::move);
