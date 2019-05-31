@@ -2,7 +2,8 @@
 #include <QDebug>
 
 Map::Map(QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent),
+    point(0)
 {
     wall = new QPixmap(":/resource/img/wall.png");
     dot = new QPixmap(":/resource/img/dot.png");
@@ -21,6 +22,11 @@ Map::Map(QWidget *parent) :
                 mappic[i][j]->setPixmap(dot->scaled(15, 15, Qt::KeepAspectRatio));
         }
 
+    dashboard = new QLabel(parent);
+    dashboard->setGeometry(180, 620, 200, 100);
+    dashboard->setAlignment(Qt::AlignCenter);
+    dashboard->setText(QString::number(point));
+    dashboard->setStyleSheet("QLabel { font-size: 20px; color : white; }");
 }
 
 Map::~Map(){
@@ -31,6 +37,16 @@ int Map::getmapval(int row, int col){
 }
 
 void Map::eaten(int row, int col){
+    int item = getmapval(row, col);
+
+    switch (item) {
+        case Dot:
+        point += 100;
+        dashboard->setText(QString::number(point));
+        break;
+
+    }
+
     mapval[row][col] = road;
     delete mappic[row][col];
 }

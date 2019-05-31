@@ -12,11 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setStyleSheet("background-color: black;");
 
     setup();
-    QLabel *label = new QLabel();
-    QPixmap pixmap(":/resource/img/wall.png");
-    label->setGeometry(100, 100, 30, 30);
-    label->setText("awe");
-    label->setPixmap(pixmap);
 }
 
 MainWindow::~MainWindow()
@@ -25,7 +20,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::setup(){
-    this->setFixedSize(20*28, 20*31);
+    this->setFixedSize(20*28, 20*31+100);
     map = new Map(this);
     pacman = new PacMan(map, this);
+    blinky = new Blinky(pacman, map, this);
 }

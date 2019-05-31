@@ -6,5 +6,9 @@
         <file>img/pacman2.png</file>
         <file>img/pacman3.png</file>
         <file>img/pacman4.png</file>
+        <file>img/blinky.png</file>
+        <file>img/clyde.png</file>
+        <file>img/inky.png</file>
+        <file>img/pinky.png</file>
     </qresource>
 </RCC>

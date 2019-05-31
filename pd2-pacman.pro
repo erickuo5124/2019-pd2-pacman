@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        ghost.cpp \
         main.cpp \
         mainwindow.cpp \
         map.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
         pacman.cpp
 
 HEADERS += \
+        ghost.h \
         mainwindow.h \
         map.h \
         moveableitem.h \

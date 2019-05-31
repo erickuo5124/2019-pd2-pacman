@@ -10,7 +10,7 @@
 #define H 31
 #define O 1
 
-enum{road, wall, dot};
+enum{road, wall, Dot, pellet};
 
 class Map : public QWidget
 {
@@ -24,6 +24,8 @@ public:
 
 private:
     QLabel *mappic[W][H];
+    QLabel *dashboard;
+    int point;
     QPixmap *wall, *dot, *pellet;
     int mapval[W][H] = {
         {O,O,O,O,O,O,O,O,O,O,0,0,0,O,0,O,0,0,0,O,O,O,O,O,O,O,O,O,O,O,O},
@@ -39,8 +41,8 @@ private:
         {O,2,O,0,O,2,O,O,2,O,O,0,O,O,O,O,O,0,O,O,2,O,O,2,O,O,2,O,O,2,O},
         {O,2,O,O,O,2,O,O,2,O,O,0,O,0,0,0,O,0,O,O,2,O,O,2,O,O,2,O,O,2,O},
         {O,2,2,2,2,2,O,O,2,0,0,0,O,0,0,0,O,0,O,O,2,2,2,2,O,O,2,2,2,2,O},
-        {O,O,O,O,O,2,O,O,O,O,O,0,0,0,0,0,O,0,O,O,O,O,O,0,O,O,O,O,O,2,O},
-        {O,O,O,O,O,2,O,O,O,O,O,0,0,0,0,0,O,0,O,O,O,O,O,0,O,O,O,O,O,2,O},
+        {O,O,O,O,O,2,O,O,O,O,O,0,O,0,0,0,O,0,O,O,O,O,O,0,O,O,O,O,O,2,O},
+        {O,O,O,O,O,2,O,O,O,O,O,0,O,0,0,0,O,0,O,O,O,O,O,0,O,O,O,O,O,2,O},
         {O,2,2,2,2,2,O,O,2,0,0,0,O,0,0,0,O,0,O,O,2,2,2,2,O,O,2,2,2,2,O},
         {O,2,O,O,O,2,O,O,2,O,O,0,O,0,0,0,O,0,O,O,2,O,O,2,O,O,2,O,O,2,O},
         {O,2,O,0,O,2,O,O,2,O,O,0,O,O,O,O,O,0,O,O,2,O,O,2,O,O,2,O,O,2,O},

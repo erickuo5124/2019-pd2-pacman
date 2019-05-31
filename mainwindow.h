@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "pacman.h"
+#include "ghost.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,6 +22,8 @@ private:
     void setup();
     Map *map;
     PacMan *pacman;
+    Blinky *blinky;
+    MoveableItem *pacmann, *ghostt;//need
 };
 
 #endif // MAINWINDOW_H
