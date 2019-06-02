@@ -2,8 +2,7 @@
 #include <QDebug>
 
 Map::Map(QWidget *parent) :
-    QWidget(parent),
-    point(0)
+    QWidget(parent)
 {
     wall = new QPixmap(":/resource/img/wall.png");
     dot = new QPixmap(":/resource/img/dot.png");
@@ -14,20 +13,30 @@ Map::Map(QWidget *parent) :
             mappic[i][j] = new QLabel(parent);
             mappic[i][j]->setGeometry(20*i, 20*j, 20, 20);
             mappic[i][j]->setAlignment(Qt::AlignCenter);
+        }
+
+    dashboard = new QLabel(parent);
+    dashboard->setGeometry(180, 620, 200, 100);
+    dashboard->setAlignment(Qt::AlignCenter);
+    dashboard->setStyleSheet("QLabel { font-size: 20px; color : white; }");
+    reset();
+
+}
+
+void Map::reset(){
+    point = 0;
+    remainDot = 240;
+    for(int i=0; i<W; ++i)
+        for(int j=0; j<H; ++j){
+            mapval[i][j] = mapValue[i][j];
             if(mapval[i][j] == 1)
                 mappic[i][j]->setPixmap(wall->scaled(20, 20, Qt::KeepAspectRatio));
             else if(mapval[i][j] == 2)
                 mappic[i][j]->setPixmap(dot->scaled(5, 5, Qt::KeepAspectRatio));
             else if(mapval[i][j] == 3)
                 mappic[i][j]->setPixmap(dot->scaled(15, 15, Qt::KeepAspectRatio));
-        }
-
-    dashboard = new QLabel(parent);
-    dashboard->setGeometry(180, 620, 200, 100);
-    dashboard->setAlignment(Qt::AlignCenter);
+    }
     dashboard->setText(QString::number(point));
-    dashboard->setStyleSheet("QLabel { font-size: 20px; color : white; }");
-
 }
 
 Map::~Map(){
@@ -55,5 +64,5 @@ void Map::eaten(int row, int col){
     if(remainDot == 0) emit stop();
 
     mapval[row][col] = road;
-    delete mappic[row][col];
+    mappic[row][col]->setPixmap(QPixmap());
 }

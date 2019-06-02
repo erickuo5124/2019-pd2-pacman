@@ -26,6 +26,7 @@ public:
     int getmapval(int, int);
     void eaten(int, int);
     int point;
+    void reset();
 
 signals:
     void eat();
@@ -35,8 +36,9 @@ private:
     QLabel *mappic[W][H];
     QLabel *dashboard;
     QPixmap *wall, *dot, *pellet;
-    int remainDot=240;
-    int mapval[W][H] = {
+    int remainDot;
+    int mapval[W][H];
+    const int mapValue[W][H] = {
         {O,O,O,O,O,O,O,O,O,O,0,0,0,O,0,O,0,0,0,O,O,O,O,O,O,O,O,O,O,O,O},
         {O,2,2,3,2,2,2,2,2,O,0,0,0,O,0,O,0,0,0,O,2,2,2,3,O,O,2,2,2,2,O},
         {O,2,O,O,O,2,O,O,2,O,0,0,0,O,0,O,0,0,0,O,2,O,O,2,O,O,2,O,O,2,O},

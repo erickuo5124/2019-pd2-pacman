@@ -39,5 +39,11 @@ void MainWindow::setup(){
 
 void MainWindow::resetClicked(){
     qDebug()<< "reset" << endl;
+    blinky->reset();
+    pinky->reset();
+    inky->reset();
+    clyde->reset();
+    map->reset();
+    pacman->reset();
     pacman->setFocus();
 }

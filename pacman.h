@@ -14,13 +14,14 @@ public:
     void move();
     int getX();
     int getY();
+    void reset();
 
 private:
     QPixmap piccopy[4];
     int goX, goY, togoX, togoY;
     QKeyEvent *next = nullptr;
     int num=0, add=1;
-    bool stop = false;
+    bool stop;
 
 private slots:
     void callMove();

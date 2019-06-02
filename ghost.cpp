@@ -66,7 +66,6 @@ void Ghost::scared(){
     isScared = true;
     scaredTimer->start(10);
     counter = 0;
-    //qDebug()<<"123"<<endl;
 }
 
 void Ghost::count(){
@@ -103,7 +102,9 @@ void Blinky::reset(){
 
 void Blinky::callMove(){
     detectCollide();
-    if((timer/70)%30<10){//scatter mode
+    timer++;
+    if(timer<100)return;
+    else if((timer/70)%30<10){//scatter mode
         targetX = 540;
         targetY = 20;
     }else {//chasing mode
@@ -111,7 +112,6 @@ void Blinky::callMove(){
         targetY = pacman->getY();
     }
     move();
-    timer++;
 }
 
 void Blinky::move(){

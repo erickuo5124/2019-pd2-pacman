@@ -17,6 +17,21 @@ PacMan::PacMan( Map *map, QWidget *parent) :
     picture = pics[2];
 
     character = new QLabel(parent);
+    reset();
+}
+
+void PacMan::reset(){
+    if(walkTimer != nullptr){
+        walkTimer->stop();
+        delete walkTimer;
+        walkTimer = nullptr;
+    }
+    if(movieTimer != nullptr){
+        movieTimer->stop();
+        delete movieTimer;
+        movieTimer = nullptr;
+    }
+    stop = false;
     character->setGeometry(270, 460, 20, 20);
     character->setPixmap(picture.scaled(20, 20, Qt::KeepAspectRatio));
     this->setFocus();
@@ -24,8 +39,8 @@ PacMan::PacMan( Map *map, QWidget *parent) :
 }
 
 void PacMan::keyPressEvent(QKeyEvent *event){
-
     if(stop) return;
+    qDebug()<<event<<endl;
     if(event->key()==Qt::Key_Up){
         togoX = 0; togoY = -STEP;
         if(!MoveableItem::canMove(togoX, togoY)){
@@ -76,8 +91,8 @@ void PacMan::keyPressEvent(QKeyEvent *event){
     }else return;
 
     if(walkTimer != nullptr) return;
-    walkTimer = new QTimer(parent());
-    movieTimer = new QTimer(parent());
+    walkTimer = new QTimer(this);
+    movieTimer = new QTimer(this);
 
     walkTimer->start(TIME);
     movieTimer->start(FPS);
@@ -98,7 +113,7 @@ void PacMan::move(){
     if(goX!=togoX && goY!=togoY && MoveableItem::canMove(togoX, togoY)){
         walkTimer->stop(); movieTimer->stop();
         delete walkTimer; delete movieTimer;
-        walkTimer = nullptr;
+        walkTimer = nullptr; movieTimer = nullptr;
         newX = character->x()+togoX;
         newY = character->y()+togoY;
         character->move(newX, newY);
@@ -107,7 +122,7 @@ void PacMan::move(){
     }else if(!MoveableItem::canMove(goX, goY)){
         walkTimer->stop(); movieTimer->stop();
         delete walkTimer; delete movieTimer;
-        walkTimer = nullptr;
+        walkTimer = nullptr; movieTimer = nullptr;
         return;
     }
 
