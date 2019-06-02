@@ -16,14 +16,17 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QPushButton *resetButton;
 
 private:
     Ui::MainWindow *ui;
     void setup();
-    Map *map;
-    PacMan *pacman;
-    Blinky *blinky;
-    MoveableItem *pacmann, *ghostt;//need
+    Map *map = nullptr;
+    PacMan *pacman = nullptr;
+    Ghost *blinky = nullptr, *pinky = nullptr, *inky = nullptr, *clyde = nullptr;//need
+
+private slots:
+    void resetClicked();
 };
 
 #endif // MAINWINDOW_H

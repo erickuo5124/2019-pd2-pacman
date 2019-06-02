@@ -1,4 +1,5 @@
 #include "moveableitem.h"
+#include <QDebug>
 
 MoveableItem::MoveableItem(Map *map,QWidget *parent) :
     QWidget (parent),

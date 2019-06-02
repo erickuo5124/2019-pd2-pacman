@@ -15,15 +15,14 @@ class MoveableItem : public QWidget
 public:
     MoveableItem(Map *, QWidget *parent = nullptr);//map
     virtual void move() = 0;
+    QTimer *walkTimer = nullptr, *movieTimer;
 
 protected:
     QPixmap picture;
     QList<QPixmap> pics;
     QLabel *character;
-    QTimer *walkTimer = nullptr, *movieTimer;
     Map *map;
     bool canMove(int, int);
-
 };
 
 #endif // MOVEABLEITEM_H

@@ -10,5 +10,6 @@
         <file>img/clyde.png</file>
         <file>img/inky.png</file>
         <file>img/pinky.png</file>
+        <file>img/scared.png</file>
     </qresource>
 </RCC>

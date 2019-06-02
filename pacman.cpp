@@ -20,10 +20,12 @@ PacMan::PacMan( Map *map, QWidget *parent) :
     character->setGeometry(270, 460, 20, 20);
     character->setPixmap(picture.scaled(20, 20, Qt::KeepAspectRatio));
     this->setFocus();
+    connect(map, SIGNAL(stop()), this, SLOT(freeze()));
 }
 
 void PacMan::keyPressEvent(QKeyEvent *event){
 
+    if(stop) return;
     if(event->key()==Qt::Key_Up){
         togoX = 0; togoY = -STEP;
         if(!MoveableItem::canMove(togoX, togoY)){
@@ -74,8 +76,8 @@ void PacMan::keyPressEvent(QKeyEvent *event){
     }else return;
 
     if(walkTimer != nullptr) return;
-    walkTimer = new QTimer(this);
-    movieTimer = new QTimer(this);
+    walkTimer = new QTimer(parent());
+    movieTimer = new QTimer(parent());
 
     walkTimer->start(TIME);
     movieTimer->start(FPS);
@@ -125,11 +127,13 @@ void PacMan::animation(){
 }
 
 void PacMan::callMove(){ move(); }
-
-int PacMan::getDistance(int x, int y){
-     return (character->x()-x)*(character->x()-x)
-          +(character->y()-y)*(character->y()-y);
-}
-
 int PacMan::getX(){ return character->x(); }
 int PacMan::getY(){ return character->y(); }
+
+void PacMan::freeze(){
+    if(walkTimer != nullptr)
+        walkTimer->stop();
+    if(movieTimer != nullptr)
+        movieTimer->stop();
+    stop = true;
+}

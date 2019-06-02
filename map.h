@@ -5,12 +5,16 @@
 #include <QList>
 #include <QLabel>
 #include <QPixmap>
+#include <QPushButton>
 
 #define W 28
 #define H 31
 #define O 1
 
-enum{road, wall, Dot, pellet};
+//extern bool stop;
+//extern bool reset;
+
+enum{road, wall, Dot, Pellet};
 
 class Map : public QWidget
 {
@@ -21,12 +25,17 @@ public:
     ~Map();
     int getmapval(int, int);
     void eaten(int, int);
+    int point;
+
+signals:
+    void eat();
+    void stop();
 
 private:
     QLabel *mappic[W][H];
     QLabel *dashboard;
-    int point;
     QPixmap *wall, *dot, *pellet;
+    int remainDot=240;
     int mapval[W][H] = {
         {O,O,O,O,O,O,O,O,O,O,0,0,0,O,0,O,0,0,0,O,O,O,O,O,O,O,O,O,O,O,O},
         {O,2,2,3,2,2,2,2,2,O,0,0,0,O,0,O,0,0,0,O,2,2,2,3,O,O,2,2,2,2,O},

@@ -27,9 +27,11 @@ Map::Map(QWidget *parent) :
     dashboard->setAlignment(Qt::AlignCenter);
     dashboard->setText(QString::number(point));
     dashboard->setStyleSheet("QLabel { font-size: 20px; color : white; }");
+
 }
 
 Map::~Map(){
+    delete this;
 }
 
 int Map::getmapval(int row, int col){
@@ -42,10 +44,15 @@ void Map::eaten(int row, int col){
     switch (item) {
         case Dot:
         point += 100;
+        remainDot--;
         dashboard->setText(QString::number(point));
         break;
-
+        case Pellet:
+        emit eat();
+        break;
     }
+
+    if(remainDot == 0) emit stop();
 
     mapval[row][col] = road;
     delete mappic[row][col];
